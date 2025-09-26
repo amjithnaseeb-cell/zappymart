@@ -1,0 +1,63 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Zappy Mart</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, button { padding: 8px; margin: 5px; }
+    .product { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+  </style>
+</head>
+
+  <title>Mini Product Finder</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, button { padding: 8px; margin: 5px; }
+    .product { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Mini Product Finder</h1>
+  <input id="search" placeholder="Type product name" />
+  <input id="minPrice" placeholder="Min Price" type="number"/>
+  <input id="maxPrice" placeholder="Max Price" type="number"/>
+  <input id="location" placeholder="Country" />
+  <button onclick="search()">Search</button>
+  <div id="results"></div>
+
+  <script>
+    const mockProducts = [
+      {title:"Phone X", price:300, seller:"Amazon", url:"https://example.com", country:"USA"},
+      {title:"Phone X", price:280, seller:"eBay", url:"https://example.com", country:"UK"},
+      {title:"Laptop Z", price:700, seller:"AliExpress", url:"https://example.com", country:"China"}
+    ];
+
+    function search() {
+      const q = document.getElementById("search").value.toLowerCase();
+      const min = parseFloat(document.getElementById("minPrice").value) || 0;
+      const max = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+      const loc = document.getElementById("location").value.toLowerCase();
+      const results = mockProducts.filter(p => 
+        p.title.toLowerCase().includes(q) &&
+        p.price >= min &&
+        p.price <= max &&
+        (loc === "" || p.country.toLowerCase() === loc)
+      );
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = results.map(p => `
+        <div class="product">
+          <strong>${p.title}</strong><br>
+          Price: ${p.price} USD<br>
+          Seller: ${p.seller}<br>
+          Country: ${p.country}<br>
+          <a href="${p.url}" target="_blank">Go to seller</a>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>
+
+<head>
+  <title>Zappy Mart</title>
+</head>
