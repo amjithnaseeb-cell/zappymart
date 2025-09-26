@@ -1,215 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZappyMart</title>
-<style>
-  /* Reset default styles */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZappyMart - Online Shopping</title>
+  <style>
+    /* General reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    background-color: #EAEDED; /* Amazon-like light gray background */
-  }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #EAEDED;
+      color: #111;
+    }
 
-  /* Header */
-  .header {
-    background-color: #131921; /* Amazon dark blue */
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
+    /* Header */
+    header {
+      background-color: #131921; /* Amazon-like dark blue */
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .header .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #FF9900; /* Amazon yellow */
-    cursor: pointer;
-  }
+    header h1 {
+      font-size: 28px;
+      color: #FF9900; /* Amazon orange */
+    }
 
-  .header input[type="text"] {
-    width: 50%;
-    padding: 8px;
-    border-radius: 3px;
-    border: none;
-  }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+    }
 
-  .header .nav-buttons button {
-    margin-left: 10px;
-    padding: 8px 12px;
-    background-color: #FF9900;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-weight: bold;
-  }
+    nav a:hover {
+      color: #FF9900;
+    }
 
-  /* Navigation categories bar */
-  .categories {
-    display: flex;
-    background-color: #232F3E;
-    color: white;
-    padding: 10px 20px;
-    gap: 15px;
-    overflow-x: auto;
-  }
+    /* Hero Banner */
+    .hero {
+      background: url("https://via.placeholder.com/1500x400.png?text=Welcome+to+ZappyMart") no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 36px;
+      font-weight: bold;
+    }
 
-  .categories div {
-    cursor: pointer;
-    white-space: nowrap;
-  }
+    /* Product Grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
 
-  .categories div:hover {
-    text-decoration: underline;
-  }
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
 
-  /* Main Banner */
-  .banner {
-    width: 100%;
-    height: 400px;
-    background-image: url('https://via.placeholder.com/1200x400.png?text=ZappyMart+Banner');
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px;
-  }
+    .product-card:hover {
+      transform: scale(1.05);
+    }
 
-  /* Product grid */
-  .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    width: 95%;
-    margin: auto;
-  }
+    .product-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
 
-  .product-card {
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-  }
+    .product-card h3 {
+      margin: 10px 0;
+      font-size: 18px;
+    }
 
-  .product-card:hover {
-    transform: translateY(-5px);
-  }
+    .product-card p {
+      color: #B12704; /* Amazon price red */
+      font-weight: bold;
+      font-size: 16px;
+    }
 
-  .product-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
+    .product-card button {
+      background-color: #FF9900;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-  .product-card h3 {
-    font-size: 16px;
-    margin: 10px 0 5px 0;
-    color: #111; /* Amazon product title color */
-  }
+    .product-card button:hover {
+      background-color: #e68a00;
+    }
 
-  .product-card p {
-    color: #B12704; /* Amazon product price red */
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  .product-card button {
-    background-color: #FFD814; /* Amazon add to cart yellow */
-    border: 1px solid #FCD200;
-    padding: 8px 12px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  .product-card button:hover {
-    background-color: #F7CA00;
-  }
-
-  /* Footer */
-  .footer {
-    background-color: #131921;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-top: 20px;
-  }
-</style>
+    /* Footer */
+    footer {
+      background: #131921;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Header -->
-<div class="header">
-  <div class="logo">ZappyMart</div>
-  <input type="text" placeholder="Search ZappyMart products">
-  <div class="nav-buttons">
-    <button>Sign In</button>
-    <button>Cart</button>
-  </div>
-</div>
+  <!-- Header -->
+  <header>
+    <h1>ZappyMart</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Deals</a>
+      <a href="#">Clothing</a>
+      <a href="#">Electronics</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-<!-- Categories -->
-<div class="categories">
-  <div>All</div>
-  <div>Electronics</div>
-  <div>Fashion</div>
-  <div>Home & Kitchen</div>
-  <div>Beauty</div>
-  <div>Sports</div>
-  <div>Toys</div>
-  <div>Books</div>
-</div>
+  <!-- Hero -->
+  <section class="hero">
+    Welcome to ZappyMart
+  </section>
 
-<!-- Main Banner -->
-<div class="banner"></div>
+  <!-- Products -->
+  <section class="products">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x400.png?text=Summer+Dress" alt="Summer Dress">
+      <h3>Summer Dress</h3>
+      <p>$29.99</p>
+      <button>Add to Cart</button>
+    </div>
 
-<!-- Product Grid -->
-<div class="products">
-  <div class="product-card">
-   // <img src="https://via.placeholder.com/200x220.png?text=Dress+1" alt="Dress 1"> width=
-    <img src="dress1.jpg" alt="Girl in a jacket" width="500" height="600">
-    <h3>Summer Dress</h3>
-    <p>$29.99</p>
-    <button>Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="https://via.placeholder.com/200x220.png?text=Dress+2" alt="Dress 2">
-    <h3>Casual Dress</h3>
-    <p>$35.99</p>
-    <button>Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="https://via.placeholder.com/200x220.png?text=Dress+3" alt="Dress 3">
-    <h3>Evening Dress</h3>
-    <p>$49.99</p>
-    <button>Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="https://via.placeholder.com/200x220.png?text=Dress+4" alt="Dress 4">
-    <h3>Party Dress</h3>
-    <p>$59.99</p>
-    <button>Add to Cart</button>
-  </div>
-</div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x400.png?text=Casual+Dress" alt="Casual Dress">
+      <h3>Casual Dress</h3>
+      <p>$35.99</p>
+      <button>Add to Cart</button>
+    </div>
 
-<!-- Footer -->
-<div class="footer">
-  &copy; 2025 ZappyMart. All rights reserved.
-</div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x400.png?text=Evening+Dress" alt="Evening Dress">
+      <h3>Evening Dress</h3>
+      <p>$49.99</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x400.png?text=Party+Dress" alt="Party Dress">
+      <h3>Party Dress</h3>
+      <p>$59.99</p>
+      <button>Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 ZappyMart. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
-
-
