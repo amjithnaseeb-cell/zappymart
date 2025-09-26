@@ -5,15 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZappyMart</title>
 <style>
+  /* Reset default styles */
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
   }
 
   body {
-    background-color: #f3f3f3;
+    background-color: #EAEDED; /* Amazon-like light gray background */
   }
 
   /* Header */
@@ -24,12 +25,15 @@
     align-items: center;
     padding: 10px 20px;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
   .header .logo {
     font-size: 28px;
     font-weight: bold;
-    color: #ff9900; /* Amazon-like yellow */
+    color: #FF9900; /* Amazon yellow */
     cursor: pointer;
   }
 
@@ -43,7 +47,7 @@
   .header .nav-buttons button {
     margin-left: 10px;
     padding: 8px 12px;
-    background-color: #ff9900;
+    background-color: #FF9900;
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -53,7 +57,7 @@
   /* Navigation categories bar */
   .categories {
     display: flex;
-    background-color: #232f3e;
+    background-color: #232F3E;
     color: white;
     padding: 10px 20px;
     gap: 15px;
@@ -69,11 +73,11 @@
     text-decoration: underline;
   }
 
-  /* Banner */
+  /* Main Banner */
   .banner {
     width: 100%;
-    height: 350px;
-    background-image: url('https://via.placeholder.com/1200x350.png?text=ZappyMart+Banner');
+    height: 400px;
+    background-image: url('https://via.placeholder.com/1200x400.png?text=ZappyMart+Banner');
     background-size: cover;
     background-position: center;
     margin-bottom: 20px;
@@ -82,7 +86,7 @@
   /* Product grid */
   .products {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
     width: 95%;
@@ -104,7 +108,7 @@
 
   .product-card img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
     border-radius: 5px;
   }
@@ -112,17 +116,18 @@
   .product-card h3 {
     font-size: 16px;
     margin: 10px 0 5px 0;
+    color: #111; /* Amazon product title color */
   }
 
   .product-card p {
-    color: #b12704; /* Amazon red for price */
+    color: #B12704; /* Amazon product price red */
     font-weight: bold;
     margin-bottom: 10px;
   }
 
   .product-card button {
-    background-color: #ffd814; /* Add to cart button */
-    border: 1px solid #fcd200;
+    background-color: #FFD814; /* Amazon add to cart yellow */
+    border: 1px solid #FCD200;
     padding: 8px 12px;
     border-radius: 3px;
     cursor: pointer;
@@ -130,7 +135,7 @@
   }
 
   .product-card button:hover {
-    background-color: #f7ca00;
+    background-color: #F7CA00;
   }
 
   /* Footer */
@@ -141,7 +146,6 @@
     text-align: center;
     margin-top: 20px;
   }
-
 </style>
 </head>
 <body>
@@ -149,7 +153,7 @@
 <!-- Header -->
 <div class="header">
   <div class="logo">ZappyMart</div>
-  <input type="text" placeholder="Search for products, brands and more">
+  <input type="text" placeholder="Search ZappyMart products">
   <div class="nav-buttons">
     <button>Sign In</button>
     <button>Cart</button>
@@ -158,6 +162,7 @@
 
 <!-- Categories -->
 <div class="categories">
+  <div>All</div>
   <div>Electronics</div>
   <div>Fashion</div>
   <div>Home & Kitchen</div>
@@ -167,33 +172,33 @@
   <div>Books</div>
 </div>
 
-<!-- Banner -->
+<!-- Main Banner -->
 <div class="banner"></div>
 
-<!-- Products -->
+<!-- Product Grid -->
 <div class="products">
   <div class="product-card">
-    <img src="https://via.placeholder.com/220.png?text=Product+1" alt="Product 1">
-    <h3>Wireless Headphones</h3>
-    <p>$45</p>
+    <img src="https://via.placeholder.com/200x220.png?text=Dress+1" alt="Dress 1">
+    <h3>Summer Dress</h3>
+    <p>$29.99</p>
     <button>Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="https://via.placeholder.com/220.png?text=Product+2" alt="Product 2">
-    <h3>Smartphone</h3>
-    <p>$199</p>
+    <img src="https://via.placeholder.com/200x220.png?text=Dress+2" alt="Dress 2">
+    <h3>Casual Dress</h3>
+    <p>$35.99</p>
     <button>Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="https://via.placeholder.com/220.png?text=Product+3" alt="Product 3">
-    <h3>Sports Shoes</h3>
-    <p>$60</p>
+    <img src="https://via.placeholder.com/200x220.png?text=Dress+3" alt="Dress 3">
+    <h3>Evening Dress</h3>
+    <p>$49.99</p>
     <button>Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="https://via.placeholder.com/220.png?text=Product+4" alt="Product 4">
-    <h3>Smartwatch</h3>
-    <p>$120</p>
+    <img src="https://via.placeholder.com/200x220.png?text=Dress+4" alt="Dress 4">
+    <h3>Party Dress</h3>
+    <p>$59.99</p>
     <button>Add to Cart</button>
   </div>
 </div>
