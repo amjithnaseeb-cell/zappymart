@@ -1,63 +1,160 @@
- <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Zappy Mart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zappymart</title>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    input, button { padding: 8px; margin: 5px; }
-    .product { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
-  </style>
-</head>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-  <title>Mini Product Finder</title>
-  <style>
-    body { font-family: Arial; padding: 20px; }
-    input, button { padding: 8px; margin: 5px; }
-    .product { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+    body {
+      background-color: #f1f3f6; /* Flipkart-like light gray background */
+    }
+
+    /* Header / Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2874f0; /* Flipkart blue */
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .navbar input[type="text"] {
+      width: 50%;
+      padding: 8px;
+      border-radius: 2px;
+      border: none;
+    }
+
+    .navbar .nav-buttons button {
+      background-color: #fff;
+      color: #2874f0;
+      border: none;
+      padding: 8px 12px;
+      margin-left: 10px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    /* Banner */
+    .banner {
+      margin: 20px auto;
+      width: 90%;
+      height: 300px;
+      background-image: url('https://via.placeholder.com/1200x300.png?text=Banner');
+      background-size: cover;
+      background-position: center;
+      border-radius: 5px;
+    }
+
+    /* Product Grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      width: 90%;
+      margin: auto;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 5px 0;
+      font-size: 16px;
+    }
+
+    .product-card p {
+      color: #2874f0;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #2874f0;
+      color: white;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Mini Product Finder</h1>
-  <input id="search" placeholder="Type product name" />
-  <input id="minPrice" placeholder="Min Price" type="number"/>
-  <input id="maxPrice" placeholder="Max Price" type="number"/>
-  <input id="location" placeholder="Country" />
-  <button onclick="search()">Search</button>
-  <div id="results"></div>
 
-  <script>
-    const mockProducts = [
-      {title:"Phone X", price:300, seller:"Amazon", url:"https://example.com", country:"USA"},
-      {title:"Phone X", price:280, seller:"eBay", url:"https://example.com", country:"UK"},
-      {title:"Laptop Z", price:700, seller:"AliExpress", url:"https://example.com", country:"China"}
-    ];
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">Zappymart</div>
+    <input type="text" placeholder="Search for products, brands and more">
+    <div class="nav-buttons">
+      <button>Login</button>
+      <button>Cart</button>
+    </div>
+  </div>
 
-    function search() {
-      const q = document.getElementById("search").value.toLowerCase();
-      const min = parseFloat(document.getElementById("minPrice").value) || 0;
-      const max = parseFloat(document.getElementById("maxPrice").value) || Infinity;
-      const loc = document.getElementById("location").value.toLowerCase();
-      const results = mockProducts.filter(p => 
-        p.title.toLowerCase().includes(q) &&
-        p.price >= min &&
-        p.price <= max &&
-        (loc === "" || p.country.toLowerCase() === loc)
-      );
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = results.map(p => `
-        <div class="product">
-          <strong>${p.title}</strong><br>
-          Price: ${p.price} USD<br>
-          Seller: ${p.seller}<br>
-          Country: ${p.country}<br>
-          <a href="${p.url}" target="_blank">Go to seller</a>
-        </div>
-      `).join('');
-    }
-  </script>
+  <!-- Banner -->
+  <div class="banner"></div>
+
+  <!-- Product Grid -->
+  <div class="products">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200.png?text=Product+1" alt="Product 1">
+      <h3>Product 1</h3>
+      <p>$20</p>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200.png?text=Product+2" alt="Product 2">
+      <h3>Product 2</h3>
+      <p>$35</p>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200.png?text=Product+3" alt="Product 3">
+      <h3>Product 3</h3>
+      <p>$50</p>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200.png?text=Product+4" alt="Product 4">
+      <h3>Product 4</h3>
+      <p>$15</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 Zappymart. All rights reserved.
+  </div>
+
 </body>
 </html>
 
-<head>
-  <title>Zappy Mart</title>
-</head>
